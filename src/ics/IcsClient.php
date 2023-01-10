@@ -2,15 +2,16 @@
 namespace Ics;
 
 /**
- * ICS3 PHP SDK v1.0.0
+ * ICS3 PHP SDK v1.1.0
  * @author jlqwer
- * @date 2021-05-27
+ * @date 2023-01-10
  */
 class IcsClient
 {
     private $appid;
     private $appkey;
     private $secretkey;
+    private $curl;
 
     /**
      * IcsClient constructor.
@@ -23,6 +24,12 @@ class IcsClient
         $this->appid = $appid;
         $this->appkey = $appkey;
         $this->secretkey = $secretkey;
+        $this->curl = curl_init();
+    }
+    
+    function __destruct()
+    {
+        curl_close($this->curl);
     }
 
     /**
@@ -61,28 +68,27 @@ class IcsClient
      */
     private function sendPost($url, $post_data)
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Ics/3.1; +https://ics.jlqwer.com/api/about)');
-        $output = curl_exec($curl);
-        curl_close($curl);
+        
+        curl_setopt($this->curl, CURLOPT_URL, $url);
+        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->curl, CURLOPT_POST, 1);
+        curl_setopt($this->curl, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($this->curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Ics/3.4; +https://ics.jlqwer.com/api/about)');
+        $output = curl_exec($this->curl);
         return json_decode($output, true);
     }
-
-	/**
-	 * Request
-	 *
-	 * @param $url
-	 * @param $data
-	 * @param bool $encrypt
-	 *
-	 * @return bool|string
-	 * @author jlqwer
-	 * @date 2021-05-27
-	 */
+    
+    /**
+     * Request
+     *
+     * @param $url
+     * @param $data
+     * @param bool $encrypt
+     *
+     * @return bool|string
+     * @author jlqwer
+     * @date 2021-05-27
+     */
     public function request($url, $data, bool $encrypt = true)
     {
         $param = [];
