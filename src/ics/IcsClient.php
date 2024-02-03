@@ -2,9 +2,9 @@
 namespace Ics;
 
 /**
- * ICS3 PHP SDK v1.2.0
+ * ICS4 PHP SDK v1.3.0
  * @author jlqwer
- * @date 2023-12-05
+ * @date 2024-02-03
  */
 class IcsClient
 {
