@@ -88,6 +88,7 @@ class IcsClient
         $param = [];
         $param['appid'] = $this->appid;
         $param['ak'] = $this->appkey;
+        $param['appkey'] = $this->appkey;
         $data = json_encode($data);
         if ($encrypt) {
             $param['data'] = $this->encryptData($data);
