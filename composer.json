@@ -1,6 +1,6 @@
 {
     "name": "jlqwer/ics",
-    "description": "ICS V3 PHP SDK (OpenAPI data request, encryption and decryption encapsulation)",
+    "description": "ICS V4 PHP SDK (OpenAPI data request, encryption and decryption encapsulation)",
     "type": "library",
     "require": {
         "php": "^7.3|^8.0",
