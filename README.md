@@ -1,1 +1,1 @@
-ics-sdk-php v1.1.0
+ics-sdk-php v1.3.0
