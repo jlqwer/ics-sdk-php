@@ -68,7 +68,9 @@ class IcsClient
         curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Ics/3.4; +https://ics.jlqwer.com/api/about)');
         $output = curl_exec($curl);
-        curl_close($curl);
+        if (PHP_VERSION_ID < 80500) {
+            curl_close($curl);
+        }
         return json_decode($output, true);
     }
     
