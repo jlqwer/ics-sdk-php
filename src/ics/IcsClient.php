@@ -2,7 +2,7 @@
 namespace Ics;
 
 /**
- * ICS4 PHP SDK v1.3.0
+ * ICS4 PHP SDK v1.3.1
  * @author jlqwer
  * @date 2024-02-03
  */
